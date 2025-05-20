@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock_paper_scesor</title>
+    <style>
+        body{
+            background-color: black;
+            justify-items: center;
+            color: white;
+        }
+        .title{
+            font-weight: bold;
+            font-size: 3rem;
+        }
+        img{
+            border-radius: 50%;
+            cursor: pointer;
+            width: 16rem;
+        }
+        button{
+            background-color: black;
+            border: none;
+            color: aqua;
+        }
+        .reset{
+            background-color: rgb(75, 75, 237);
+            padding: 0.5rem 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: white;
+        }
+        .choice_img{
+            width: 5rem;
+        }
+        .score{
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        .result{
+            font-size: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="title">Rock - Paper - Scissor</h1>
+
+    <button onclick="playGame('rock')"><img src="rock.jpeg" alt=""></button>
+
+    <button onclick="playGame('paper')"><img src="paper.jpeg" alt=""></button>
+
+    <button onclick="playGame('scissors')"><img src="scissors.jpeg" alt=""></button>
+    <p class="score"></p>
+    <p class="result"></p>
+    <p class="choice"></p>
+    <button onclick="reset()" class="reset">Reset</button>
+
+    <script>
+         const scoreCard={
+            loses:0,
+            ties:0,
+            wins:0
+         }
+
+        let score=document.querySelector('.score');
+        score.innerHTML=`Wins:${scoreCard.wins}, Loses:${scoreCard.loses}, Ties:${scoreCard.ties}`
+        let result_disp=document.querySelector('.result');
+        let choice=document.querySelector('.choice');
+        
+        function playGame(playerMove){
+            let result=''
+            let computerChoice=function1();
+            console.log(computerChoice)
+            if(playerMove==='scissors'){
+                if (computerChoice==='scissors'){
+                result= 'TIE'
+                scoreCard.ties++
+                }else if(computerChoice==='rock') {
+                result= 'Computer Won'
+                scoreCard.loses++
+                } else{
+                result= 'You won'
+                scoreCard.wins++
+                }
+            }else if(playerMove==='paper'){
+                if (computerChoice==='paper'){
+                    result= 'TIE'
+                    scoreCard.ties++
+                } else if(computerChoice==='scissors'){
+                    result=  'Computer Won'
+                    scoreCard.loses++
+                } else{
+                    result=  'You won'
+                    scoreCard.wins++
+                }
+            } else{
+                if (computerChoice==='rock'){
+                    result= 'TIE'
+                    scoreCard.ties++
+                }else if(computerChoice==='paper'){
+                    result= 'Computer Won'
+                    scoreCard.loses++
+                } else{
+                    result= 'You won'
+                    scoreCard.wins++
+                }
+            };
+            // alert(`Computer choice is :${computerChoice}, You chose :${playerMove} result is :${result}.\n
+            // Wins:${scoreCard.wins}, Loses:${scoreCard.loses},Ties:${scoreCard.ties}`)
+            console.log(computerChoice)
+            console.log(result)
+            score.innerHTML=`Wins:${scoreCard.wins}, Loses:${scoreCard.loses}, Ties:${scoreCard.ties}`
+            result_disp.innerHTML=`Result is :${result}`
+            choice.innerHTML=`You <img src="${playerMove}.jpeg" alt="" class="choice_img"> Computer <img class="choice_img" src="${computerChoice}.jpeg" alt="">`
+        }
+
+
+        let function1=()=>{
+        randomNumber=Math.random()  
+        if (randomNumber <= 1/3){
+        return 'rock'
+        } else if(randomNumber<=2/3){
+        return 'paper'
+        } else{
+        return 'scissors'
+        }
+        }
+
+        function reset(){
+            scoreCard.loses=0;
+            scoreCard.ties=0;
+            scoreCard.wins=0;
+            score.innerHTML=`Wins:${scoreCard.wins}, Loses:${scoreCard.loses},Ties:${scoreCard.ties}`
+            choice.innerHTML=''
+            result.innerHTML=''
+            // alert(`Wins:${scoreCard.wins}, Loses:${scoreCard.loses},Ties:${scoreCard.ties} `)
+        }
+
+
+    </script>
+</body>
+</html>
